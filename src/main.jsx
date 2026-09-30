@@ -1,5 +1,6 @@
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route, HashRouter } from "react-router";
+import { BrowserRouter, Routes, Route } from "react-router";
+import  HashRouter  from "react-router-dom";
 
 import App from "./App";
 import Chat from "./Chat";
