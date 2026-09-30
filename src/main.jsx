@@ -10,7 +10,7 @@ import FileUploadForm from "./FileUploadForm";
 const root = document.getElementById("root");
 
 ReactDOM.createRoot(root).render(
-  <BrowserRouter history={hashHistory}>
+  <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/chat" element={<Chat />} />
