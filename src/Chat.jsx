@@ -2,6 +2,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import NavBar from "./NavBar";
+import urls from "./appSettings.json";
 
 function Chat() {
   const mystyle = {
@@ -10,13 +11,16 @@ function Chat() {
     marginTop: "50px",
   };
 
+  // console.log(urls.Endpoints.Chat);
+
   async function send(formData) {
     const data = {
       request: Object.fromEntries(formData),
     };
     await axios
       .post(
-        "https://mcpclientapi-dxgvhccyameqbxaf.southafricanorth-01.azurewebsites.net/Requests/GetSolution/",
+        urls.Endpoints.Chat,
+        // "https://mcpclientapi-dxgvhccyameqbxaf.southafricanorth-01.azurewebsites.net/Requests/GetSolution/",
         data.request,
       )
       // .post("http://localhost:5012/Requests/GetSolution/", data.request)

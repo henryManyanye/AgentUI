@@ -2,6 +2,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import NavBar from "./NavBar";
+import urls from "./appSettings.json";
 
 function FileUploadForm() {
   const mystyle = {
@@ -10,9 +11,12 @@ function FileUploadForm() {
     marginTop: "50px",
   };
 
+  // console.log(urls.Endpoints.FileUpload);
+
   async function send() {
     let response = await axios.postForm(
-      "https://filesearchapi-c4hfc8a3bzecdubf.southafricanorth-01.azurewebsites.net/Requests/SummariseReport/",
+      urls.Endpoints.FileUpload,
+      // "https://filesearchapi-c4hfc8a3bzecdubf.southafricanorth-01.azurewebsites.net/Requests/SummariseReport/",
       // "http://localhost:5012/Requests/SummariseReport/",
       {
         description: "Report",
