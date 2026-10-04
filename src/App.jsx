@@ -9,7 +9,8 @@ const App = () => {
   return (
     <>
       <NavBar />
-      <div>Welcome</div>
+      {/* <div>Welcome</div> */}
+      <LoginForm />
     </>
   );
 };

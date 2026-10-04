@@ -8,6 +8,10 @@ import Modal from 'react-bootstrap/Modal';
 import Spinner from 'react-bootstrap/Spinner';
 
 function Chat() {
+  if(!localStorage.getItem("email") || !localStorage.getItem("password")) {
+    window.location.href = "/"; // Redirect to login page
+  }
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
