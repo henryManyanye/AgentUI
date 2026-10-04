@@ -18,14 +18,22 @@ const logout = (event) => {
         <Nav.Item>
           <Nav.Link href="/">Home</Nav.Link>
         </Nav.Item>
-        <NavDropdown title="Tasks" id="basic-nav-dropdown">
-          <NavDropdown.Item href="/chat">Generate Report</NavDropdown.Item>
-          <NavDropdown.Item href="/chat">Schedule Report</NavDropdown.Item>
-          <NavDropdown.Item href="/chat">Get Insights</NavDropdown.Item>
-          <NavDropdown.Item href="/summariseReport">
-            Summarise Report
-          </NavDropdown.Item>
-        </NavDropdown>
+        {
+          (localStorage.getItem("email") != null || localStorage.getItem("password") != null) 
+          ? (
+            <NavDropdown title="Tasks" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/chat">Generate Report</NavDropdown.Item>
+              <NavDropdown.Item href="/chat">Schedule Report</NavDropdown.Item>
+              <NavDropdown.Item href="/chat">Get Insights</NavDropdown.Item>
+              <NavDropdown.Item href="/summariseReport">
+                Summarise Report
+              </NavDropdown.Item>
+            </NavDropdown>
+          )
+          :
+          (null)
+        }
+        
         <NavDropdown title="Account" id="basic-nav-dropdown">
           {(localStorage.getItem("email") === null || localStorage.getItem("password") === null) 
             ?
