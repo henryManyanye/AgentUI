@@ -34,7 +34,7 @@ const logout = (event) => {
               (<NavDropdown.Item href="/" onClick={logout}>Sign Out</NavDropdown.Item>)}
         </NavDropdown>
         <Nav.Item>
-          <Nav.Link eventKey="link-2">About Us</Nav.Link>
+          <Nav.Link href="/about-us">About Us</Nav.Link>
         </Nav.Item>
       </Nav>
     </>
