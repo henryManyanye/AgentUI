@@ -50,7 +50,7 @@ function Chat() {
           setAgentResponse("Make sure all the servers are running. Don't forget to enable CORS");
         }
         console.log(response);
-        response = response.data.replace("*", "").replace("`", "");
+        response = response.data.replaceAll("*", "").replaceAll("`", "");
         setAgentResponse(response);
         handleShow();
         setShowSpinner(false);
