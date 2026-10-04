@@ -3,8 +3,20 @@ import Form from "react-bootstrap/Form";
 import axios from "axios";
 import NavBar from "./NavBar";
 import urls from "./appSettings.json";
+import { useState } from 'react'; 
+import Modal from 'react-bootstrap/Modal';
+import Spinner from 'react-bootstrap/Spinner';
 
 function Chat() {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const [agentResponse, setAgentResponse] = useState("")
+
+  const [showSpinner, setShowSpinner] = useState(false);
+
   const mystyle = {
     width: "50%",
     margin: "0 auto",
@@ -25,7 +37,15 @@ function Chat() {
       )
       // .post("http://localhost:5012/Requests/GetSolution/", data.request)
       .then((response) => {
+        if(response.status != 200)
+        {
+          setAgentResponse("Make sure all the servers are running. Don't forget to enable CORS");
+        }
         console.log(response);
+        response = response.data.replace("*", "").replace("`", "");
+        setAgentResponse(response);
+        handleShow();
+        setShowSpinner(false);
       });
   }
 
@@ -34,6 +54,8 @@ function Chat() {
     console.log(Object.fromEntries(formData));
 
     send(formData);
+
+    setShowSpinner(true);
 
     event.preventDefault();
   };
@@ -49,7 +71,28 @@ function Chat() {
         <Button variant="primary" type="submit">
           Send
         </Button>
+        <Button variant="primary" disabled style={{"float": "right", "display": showSpinner ? "inline-block": "none"}}>
+        <Spinner
+          as="span"
+          animation="grow"
+          size="sm"
+          role="status"
+          aria-hidden="true"
+        />
+        Loading...
+      </Button>
       </Form>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Agent Response</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{agentResponse}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button> 
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }
