@@ -2,6 +2,16 @@ import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
 function NavBar() {
+const logout = (event) => {
+  console.log(event);
+  localStorage.removeItem("email");
+  localStorage.removeItem("password");
+  // localStorage.clear();
+  window.location.href = "/"; 
+
+  event.preventDefault();
+};
+
   return (
     <>
       <Nav className="justify-content-center" activeKey="/home">
@@ -15,6 +25,13 @@ function NavBar() {
           <NavDropdown.Item href="/summariseReport">
             Summarise Report
           </NavDropdown.Item>
+        </NavDropdown>
+        <NavDropdown title="Account" id="basic-nav-dropdown">
+          {(localStorage.getItem("email") === null || localStorage.getItem("password") === null) 
+            ?
+              (<NavDropdown.Item href="/">Sign In</NavDropdown.Item>) 
+            :
+              (<NavDropdown.Item href="/" onClick={logout}>Sign Out</NavDropdown.Item>)}
         </NavDropdown>
         <Nav.Item>
           <Nav.Link eventKey="link-2">About Us</Nav.Link>
