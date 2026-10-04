@@ -53,7 +53,7 @@ function FileUploadForm() {
     );
 
     console.log(response.data);
-    response = response.data.replace("*", "").replace("`", "").replace("**", "");
+    response = response.data.replaceAll("*", "").replaceAll("`", "").replaceAll("**", "");
     setAgentResponse(response);
     handleShow();
     setShowSpinner(false);
