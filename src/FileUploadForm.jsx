@@ -3,12 +3,29 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import NavBar from "./NavBar";
 import urls from "./appSettings.json";
+import { useState } from 'react'; 
+import Modal from 'react-bootstrap/Modal';
+import Spinner from 'react-bootstrap/Spinner';
 
 function FileUploadForm() {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const [agentResponse, setAgentResponse] = useState("")
+
+  const [showSpinner, setShowSpinner] = useState(false);
+
+
   const mystyle = {
     width: "50%",
     margin: "0 auto",
     marginTop: "50px",
+  };
+
+  const displayWhiteSpace = {
+    whiteSpace: "pre-line",
   };
 
   // console.log(urls.Endpoints.FileUpload);
@@ -32,6 +49,10 @@ function FileUploadForm() {
     );
 
     console.log(response.data);
+    response = response.data.replace("*", "").replace("`", "").replace("**", "");
+    setAgentResponse(response);
+    handleShow();
+    setShowSpinner(false);
   }
 
   // console.log(document.querySelector("#fileInput").files[0]);
@@ -39,6 +60,8 @@ function FileUploadForm() {
   const sendDataToServer = (event) => {
     const formData = new FormData(event.target);
     console.log(Object.fromEntries(formData));
+
+    setShowSpinner(true);
 
     send();
 
@@ -70,7 +93,30 @@ function FileUploadForm() {
         <Button variant="primary" type="submit">
           Summarise
         </Button>
+         <Button variant="primary" disabled style={{"float": "right", "display": showSpinner ? "inline-block": "none"}}>
+        <Spinner
+          as="span"
+          animation="grow"
+          size="sm"
+          role="status"
+          aria-hidden="true"
+        />
+        Reasoning...
+      </Button>
       </Form>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Agent Response</Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={displayWhiteSpace}>
+          <p>{agentResponse}</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button> 
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }

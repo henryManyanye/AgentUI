@@ -23,6 +23,10 @@ function Chat() {
     marginTop: "50px",
   };
 
+  const displayWhiteSpace = {
+    whiteSpace: "pre-line",
+  };
+
   // console.log(urls.Endpoints.Chat);
 
   async function send(formData) {
@@ -79,14 +83,16 @@ function Chat() {
           role="status"
           aria-hidden="true"
         />
-        Loading...
+        Reasoning...
       </Button>
       </Form>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Agent Response</Modal.Title>
         </Modal.Header>
-        <Modal.Body>{agentResponse}</Modal.Body>
+        <Modal.Body style={displayWhiteSpace}>
+          <p>{agentResponse}</p>
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
