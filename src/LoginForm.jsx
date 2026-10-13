@@ -22,7 +22,7 @@ function LoginForm() {
 
     const credentials = Object.fromEntries(formData);
     if(credentials.email === "admin@example.com" && credentials.password === "Password123") {
-      setAuthenticationMessage("Login successful!");
+      setAuthenticationMessage("Login successful! Redirecting you to the homepage.");
       localStorage.setItem("email", credentials.email); 
       localStorage.setItem("password", credentials.password);
       handleShow();

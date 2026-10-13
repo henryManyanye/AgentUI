@@ -44,14 +44,11 @@ function Chat() {
         data.request,
       )
       // .post("http://localhost:5012/Requests/GetSolution/", data.request)
-      .then((response) => {
-        if(response.status != 200)
-        {
-          setAgentResponse("Make sure all the servers are running. Don't forget to enable CORS");
-        }
-        console.log(response);
-        response = response.data.replaceAll("*", "").replaceAll("`", "");
-        setAgentResponse(response);
+      .catch((error) => {
+        
+         
+        console.log(error); 
+        setAgentResponse(error.message); 
         handleShow();
         setShowSpinner(false);
       });

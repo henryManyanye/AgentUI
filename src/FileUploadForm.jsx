@@ -50,7 +50,14 @@ function FileUploadForm() {
           console.log(`Upload progress: ${percent}%`);
         },
       },
-    );
+    ).catch((error) => {
+        
+         
+        console.log(error); 
+        setAgentResponse(error.message); 
+        handleShow();
+        setShowSpinner(false);
+      });
 
     console.log(response.data);
     response = response.data.replaceAll("*", "").replaceAll("`", "").replaceAll("**", "");
