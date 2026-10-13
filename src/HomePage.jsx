@@ -1,16 +1,17 @@
 import NavBar from "./NavBar";
+import DarkVariantCarousel from "./Carousel";
 
 function HomePage() {
-  if(!localStorage.getItem("email") || !localStorage.getItem("password")) {
+  if (!localStorage.getItem("email") || !localStorage.getItem("password")) {
     window.location.href = "/"; // Redirect to login page
   }
 
   return (
     <>
-     <NavBar />
-     <h1>Welcome!</h1>
+      <NavBar />
+      <br></br>
+      <DarkVariantCarousel />
     </>
-
   );
 }
 

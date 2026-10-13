@@ -1,16 +1,26 @@
 import NavBar from "./NavBar";
+import DarkVariantCarousel from "./Carousel";
 
 function AboutUs() {
+  const mystyle = {
+    width: "50%",
+    margin: "0 auto",
+    marginTop: "50px",
+  };
 
   return (
     <>
-        <NavBar />
-        <h1>About Us</h1>
+      <NavBar />
+      <div style={mystyle}>
         <p>
-            For more information, kindly search for "CBZ Holdings" on your favourite search engine.
+          <i>
+            For more information, kindly search for CBZ Holdings on your
+            favourite search engine.
+          </i>
         </p>
+      </div>
+      <DarkVariantCarousel />
     </>
-      
   );
 }
 
