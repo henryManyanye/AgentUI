@@ -19,7 +19,7 @@ function NavBar() {
         <div class="container-fluid">
           <a class="navbar-brand" href="/">
             <img
-              src="Assets/CBZ Holdings Logo.png"
+              src="/CBZ Holdings Logo.png"
               alt="Logo"
               class="d-inline-block align-text-middle"
             />
