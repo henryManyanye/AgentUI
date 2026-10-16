@@ -43,6 +43,18 @@ function Chat() {
         // "https://mcpclientapi-dxgvhccyameqbxaf.southafricanorth-01.azurewebsites.net/Requests/GetSolution/",
         data.request,
       )
+      .then((response) => {
+        if(response.status != 200)
+        {
+          setAgentResponse("Make sure all the servers are running. Don't forget to enable CORS");
+        }
+        console.log(response);
+        response = response.data.replace("*", "").replace("`", "");
+        response = response.data.replaceAll("*", "").replaceAll("`", "");
+        setAgentResponse(response);
+        handleShow();
+        setShowSpinner(false);
+      })
       // .post("http://localhost:5012/Requests/GetSolution/", data.request)
       .catch((error) => {
         
